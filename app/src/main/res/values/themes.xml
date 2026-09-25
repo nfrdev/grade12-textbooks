@@ -1,0 +1,3 @@
+<resources>
+    <style name="Theme.Grade12Textbooks" parent="android:style/Theme.Material.Light.NoActionBar" />
+</resources>

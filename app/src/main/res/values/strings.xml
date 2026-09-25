@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Grade 12 Textbooks</string>
+    <string name="natural_science">Natural Science</string>
+    <string name="social_science">Social Science</string>
+    <string name="debug_menu">Debug menu</string>
+    <string name="reset_catalog_cache">Reset catalog cache</string>
+    <string name="wipe_downloads">Wipe downloads</string>
+    <string name="debug_action_complete">Debug action complete</string>
+    <string name="ok">OK</string>
+</resources>
