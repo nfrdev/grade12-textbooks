@@ -1,2 +1,2 @@
 @ECHO OFF
-java -jar "%~dp0gradle\gradle-wrapper.jar" %*
+java -cp "%~dp0gradle\gradle-wrapper.jar" org.gradle.wrapper.GradleWrapperMain %*

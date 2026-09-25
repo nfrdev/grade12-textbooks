@@ -12,6 +12,9 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import javax.inject.Singleton
+import com.nfrdev.grade12textbooks.data.remote.CatalogParser
+import com.nfrdev.grade12textbooks.domain.repository.CatalogRepository
+import com.nfrdev.grade12textbooks.data.repository.RoomCatalogRepository
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -24,4 +27,6 @@ object NetworkModule {
         .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
         .build()
     @Provides @Singleton fun catalogApi(retrofit: Retrofit): CatalogApi = retrofit.create(CatalogApi::class.java)
+    @Provides @Singleton fun catalogParser(json: Json, logger: com.nfrdev.grade12textbooks.util.Logger): CatalogParser = CatalogParser(json, logger)
+    @Provides @Singleton fun catalogRepository(repository: RoomCatalogRepository): CatalogRepository = repository
 }
