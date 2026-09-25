@@ -9,6 +9,7 @@ lifecycle = "2.9.0"
 navigation = "2.9.0"
 hilt = "2.56.2"
 hiltNavigation = "1.2.0"
+hiltWork = "1.2.0"
 room = "2.7.1"
 retrofit = "2.11.0"
 okhttp = "4.12.0"
@@ -45,6 +46,8 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigation" }
+hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "hiltWork" }
+hilt-work-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltWork" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 junit = { module = "junit:junit", version.ref = "junit" }

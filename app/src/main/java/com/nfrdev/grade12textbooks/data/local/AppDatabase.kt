@@ -12,10 +12,12 @@ import com.nfrdev.grade12textbooks.data.local.entity.ProgressEntity
 import com.nfrdev.grade12textbooks.data.local.dao.BookLocalStateDao
 import com.nfrdev.grade12textbooks.data.local.dao.BookmarkDao
 import com.nfrdev.grade12textbooks.data.local.dao.ProgressDao
+import com.nfrdev.grade12textbooks.data.download.DownloadSlotEntity
+import com.nfrdev.grade12textbooks.data.download.DownloadSlotDao
 
 @Database(
-    entities = [BookEntity::class, BookLocalStateEntity::class, CatalogMetadataEntity::class, BookmarkEntity::class, ProgressEntity::class],
-    version = 2,
+    entities = [BookEntity::class, BookLocalStateEntity::class, CatalogMetadataEntity::class, BookmarkEntity::class, ProgressEntity::class, DownloadSlotEntity::class],
+    version = 3,
     exportSchema = true
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -24,6 +26,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun catalogMetadataDao(): CatalogMetadataDao
     abstract fun bookmarkDao(): BookmarkDao
     abstract fun progressDao(): ProgressDao
+    abstract fun downloadSlotDao(): DownloadSlotDao
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null

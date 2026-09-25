@@ -8,7 +8,7 @@ plugins {
 }
 
 val configuredCatalogBaseUrl = providers.gradleProperty("catalog.baseUrl")
-val debugCatalogBaseUrl = "https://raw.githubusercontent.com/CHANGEME/grade12-textbooks-data/main/"
+val debugCatalogBaseUrl = "https://raw.githubusercontent.com/CHANGEME/grade12-textbooks/main/"
 
 android {
     namespace = "com.nfrdev.grade12textbooks"
@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.hilt.work)
     implementation(libs.coil.compose)
     implementation(libs.timber)
     testImplementation(libs.junit)

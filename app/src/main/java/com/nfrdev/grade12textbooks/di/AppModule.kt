@@ -12,6 +12,7 @@ import com.nfrdev.grade12textbooks.util.CrashReporter
 import com.nfrdev.grade12textbooks.util.Logger
 import com.nfrdev.grade12textbooks.util.NoOpCrashReporter
 import com.nfrdev.grade12textbooks.util.TimberLogger
+import com.nfrdev.grade12textbooks.data.download.DownloadSlotDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,6 +30,7 @@ object AppModule {
     @Provides fun catalogMetadataDao(db: AppDatabase): CatalogMetadataDao = db.catalogMetadataDao()
     @Provides fun bookmarkDao(db: AppDatabase): BookmarkDao = db.bookmarkDao()
     @Provides fun progressDao(db: AppDatabase): ProgressDao = db.progressDao()
+    @Provides fun downloadSlotDao(db: AppDatabase): DownloadSlotDao = db.downloadSlotDao()
     @Provides @Singleton fun logger(): Logger = TimberLogger()
     @Provides @Singleton fun crashReporter(): CrashReporter = NoOpCrashReporter()
 }

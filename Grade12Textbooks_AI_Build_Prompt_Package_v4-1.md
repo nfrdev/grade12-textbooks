@@ -144,15 +144,15 @@ The final manifest must contain only permissions required by the chosen implemen
 
 ## GitHub Hosting Setup (do this first)
 
-1. Create a **public** GitHub repository, e.g. `grade12-textbooks-data`
+1. Create a **public** GitHub repository, e.g. `grade12-textbooks`
 2. Add two files in the root (or a `/data` folder):
    - `catalog.json`
    - `version.json`
 3. The raw URLs will look like:
 ```
 
-https://raw.githubusercontent.com/nfrdev/grade12-textbooks-data/main/catalog.json
-https://raw.githubusercontent.com/nfrdev/grade12-textbooks-data/main/version.json
+https://raw.githubusercontent.com/nfrdev/grade12-textbooks/main/catalog.json
+https://raw.githubusercontent.com/nfrdev/grade12-textbooks/main/version.json
 
 ```
 4. Put the base URL (without the filename) into `BuildConfig` as `CATALOG_BASE_URL`.
@@ -164,7 +164,7 @@ Example `version.json`:
 {
   "latestVersionCode": 1,
   "latestVersionName": "1.0.0",
-  "downloadUrl": "https://github.com/nfrdev/grade12-textbooks-data/releases/download/v1.0.0/Grade12Textbooks.apk",
+  "downloadUrl": "https://github.com/nfrdev/grade12-textbooks/releases/download/v1.0.0/Grade12Textbooks.apk",
   "releaseNotes": "Initial release"
 }
 ```
@@ -265,7 +265,7 @@ Permissions:
 
 BuildConfig field:
 - `CATALOG_BASE_URL` — read from Gradle property `catalog.baseUrl`.
-  Debug default: "https://raw.githubusercontent.com/CHANGEME/grade12-textbooks-data/main/"
+  Debug default: "https://raw.githubusercontent.com/CHANGEME/grade12-textbooks/main/"
   Release: required to be explicitly configured.
   Release configuration must fail if the value is missing, malformed, or not HTTPS.
   Normalize the value to end with `/`; append filenames in code.

@@ -13,4 +13,5 @@ interface BookLocalStateDao {
     @Query("UPDATE book_local_state SET isOrphaned = 1 WHERE bookId NOT IN (:activeIds)") suspend fun markOrphans(activeIds: List<String>)
     @Query("UPDATE book_local_state SET isOrphaned = 0 WHERE bookId IN (:activeIds)") suspend fun clearOrphans(activeIds: List<String>)
     @Query("DELETE FROM book_local_state") suspend fun deleteAll()
+    @Query("DELETE FROM book_local_state WHERE bookId = :bookId") suspend fun delete(bookId: String)
 }
