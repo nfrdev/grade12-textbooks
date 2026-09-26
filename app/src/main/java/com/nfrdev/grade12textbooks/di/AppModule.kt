@@ -1,7 +1,6 @@
 package com.nfrdev.grade12textbooks.di
 
 import android.content.Context
-import androidx.room.Room
 import com.nfrdev.grade12textbooks.data.local.AppDatabase
 import com.nfrdev.grade12textbooks.data.local.dao.BookDao
 import com.nfrdev.grade12textbooks.data.local.dao.CatalogMetadataDao
@@ -24,7 +23,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
     @Provides @Singleton fun database(@ApplicationContext context: Context): AppDatabase =
-        Room.databaseBuilder(context, AppDatabase::class.java, "grade12.db").build()
+        AppDatabase.getInstance(context)
     @Provides fun bookDao(db: AppDatabase): BookDao = db.bookDao()
     @Provides fun bookLocalStateDao(db: AppDatabase): BookLocalStateDao = db.bookLocalStateDao()
     @Provides fun catalogMetadataDao(db: AppDatabase): CatalogMetadataDao = db.catalogMetadataDao()
@@ -33,4 +32,6 @@ object AppModule {
     @Provides fun downloadSlotDao(db: AppDatabase): DownloadSlotDao = db.downloadSlotDao()
     @Provides @Singleton fun logger(): Logger = TimberLogger()
     @Provides @Singleton fun crashReporter(): CrashReporter = NoOpCrashReporter()
+    @Provides @Singleton fun userPreferencesRepository(@ApplicationContext context: Context): com.nfrdev.grade12textbooks.util.UserPreferencesRepository =
+        com.nfrdev.grade12textbooks.util.UserPreferencesRepository(context)
 }

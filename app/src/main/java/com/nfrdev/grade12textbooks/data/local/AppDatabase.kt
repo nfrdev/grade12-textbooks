@@ -1,6 +1,8 @@
 package com.nfrdev.grade12textbooks.data.local
 
+import android.content.Context
 import androidx.room.Database
+import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.nfrdev.grade12textbooks.data.local.dao.BookDao
 import com.nfrdev.grade12textbooks.data.local.dao.CatalogMetadataDao
@@ -29,12 +31,15 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun downloadSlotDao(): DownloadSlotDao
 
     companion object {
-        @Volatile private var INSTANCE: AppDatabase? = null
-        fun getInstance(context: android.content.Context): AppDatabase =
-            INSTANCE ?: synchronized(this) {
-                INSTANCE ?: androidx.room.Room.databaseBuilder(
-                    context.applicationContext, AppDatabase::class.java, "grade12.db"
-                ).build().also { INSTANCE = it }
-            }
+        @Volatile
+        private var instance: AppDatabase? = null
+
+        fun getInstance(context: Context): AppDatabase = instance ?: synchronized(this) {
+            instance ?: Room.databaseBuilder(
+                context.applicationContext,
+                AppDatabase::class.java,
+                "grade12.db"
+            ).build().also { instance = it }
+        }
     }
 }

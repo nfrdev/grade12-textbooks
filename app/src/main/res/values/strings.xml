@@ -32,4 +32,9 @@
     <string name="next">Next</string>
     <string name="bookmarks">Bookmarks</string>
     <string name="read_now">Read now</string>
+    <string name="check_updates">Check for updates</string>
+    <string name="update_available">Update available: %1$s</string>
+    <string name="disclaimer_title">Important information</string>
+    <string name="disclaimer_text">This app provides convenient offline access to publicly available Grade 12 textbooks for personal educational use. PDFs are sourced from third-party sites. Redistribution of the APK or the books themselves may be restricted by the original publishers.</string>
+    <string name="accept">Accept</string>
 </resources>

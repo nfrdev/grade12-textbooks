@@ -16,16 +16,18 @@ sealed interface CatalogParseResult {
 }
 
 class CatalogParser(private val json: Json, private val logger: Logger) {
-    fun parse(raw: String): CatalogParseResult = try {
-        val dto = json.decodeFromString<CatalogDto>(raw)
-        if (dto.schemaVersion != 1) return CatalogParseResult.Failure("unsupported_schema")
-        val ids = HashSet<String>()
-        val valid = dto.books.mapNotNull { book -> validate(book, ids) }
-        if (valid.isEmpty()) CatalogParseResult.Failure("no_valid_books")
-        else CatalogParseResult.Success(dto.version, valid)
-    } catch (e: Exception) {
-        logger.e("Catalog parsing failed", e)
-        CatalogParseResult.Failure("invalid_catalog")
+    fun parse(raw: String): CatalogParseResult {
+        return try {
+            val dto = json.decodeFromString<CatalogDto>(raw)
+            if (dto.schemaVersion != 1) return CatalogParseResult.Failure("unsupported_schema")
+            val ids = HashSet<String>()
+            val valid = dto.books.mapNotNull { book -> validate(book, ids) }
+            if (valid.isEmpty()) CatalogParseResult.Failure("no_valid_books")
+            else CatalogParseResult.Success(dto.version, valid)
+        } catch (e: Exception) {
+            logger.e("Catalog parsing failed", e)
+            CatalogParseResult.Failure("invalid_catalog")
+        }
     }
 
     private fun validate(book: BookDto, ids: MutableSet<String>): BookEntity? {

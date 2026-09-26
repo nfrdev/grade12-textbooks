@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -7,12 +9,19 @@ plugins {
     alias(libs.plugins.hilt)
 }
 
-val configuredCatalogBaseUrl = providers.gradleProperty("catalog.baseUrl")
-val debugCatalogBaseUrl = "https://raw.githubusercontent.com/CHANGEME/grade12-textbooks/main/"
+val localProperties = Properties()
+rootProject.file("local.properties").takeIf { it.isFile }?.inputStream()?.use { localProperties.load(it) }
+val configuredCatalogBaseUrl = providers.gradleProperty("catalog.baseUrl").orNull
+    ?: localProperties.getProperty("catalog.baseUrl")
+val debugCatalogBaseUrl = configuredCatalogBaseUrl ?: "https://raw.githubusercontent.com/nfrdev/grade12-textbooks/main/"
 
 android {
     namespace = "com.nfrdev.grade12textbooks"
     compileSdk = 35
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
     defaultConfig {
         applicationId = "com.nfrdev.grade12textbooks"
         minSdk = 24
@@ -25,8 +34,10 @@ android {
     buildTypes {
         debug { buildConfigField("String", "CATALOG_BASE_URL", "\"$debugCatalogBaseUrl\"") }
         release {
-            isMinifyEnabled = false
-            val baseUrl = configuredCatalogBaseUrl.orNull
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            val baseUrl = configuredCatalogBaseUrl
                 ?: error("catalog.baseUrl must be configured for release builds")
             require(baseUrl.startsWith("https://")) { "catalog.baseUrl must be HTTPS for release builds" }
             buildConfigField("String", "CATALOG_BASE_URL", "\"${baseUrl.trimEnd('/')}/\"")
@@ -45,6 +56,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.material3)
+    implementation("androidx.compose.material:material-icons-extended")
     implementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
@@ -59,6 +71,7 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.hilt.work)
+    ksp(libs.hilt.work.compiler)
     implementation(libs.coil.compose)
     implementation(libs.timber)
     testImplementation(libs.junit)

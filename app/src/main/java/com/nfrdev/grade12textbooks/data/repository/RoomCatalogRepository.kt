@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.withTransaction
 import com.nfrdev.grade12textbooks.data.local.AppDatabase
 import com.nfrdev.grade12textbooks.BuildConfig
-import com.nfrdev.grade12textbooks.data.local.BookMappers.toDomain
+import com.nfrdev.grade12textbooks.data.local.toDomain
 import com.nfrdev.grade12textbooks.data.local.dao.BookDao
 import com.nfrdev.grade12textbooks.data.local.dao.BookLocalStateDao
 import com.nfrdev.grade12textbooks.data.local.dao.CatalogMetadataDao

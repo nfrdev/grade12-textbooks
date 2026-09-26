@@ -49,13 +49,13 @@ class BookDownloader @Inject constructor(
         scope.launch { runDownload(book) }.also { jobs[book.id] = it }
     }
 
-    fun pause(bookId: String) {
+    fun pause(bookId: String) = synchronized(jobs) {
         paused += bookId
         jobs.remove(bookId)?.cancel()
         flowFor(bookId).value = DownloadState.Paused
     }
 
-    fun cancel(bookId: String) {
+    fun cancel(bookId: String) = synchronized(jobs) {
         paused.remove(bookId)
         jobs.remove(bookId)?.cancel()
         filesFor(bookId).part.delete()
@@ -98,7 +98,8 @@ class BookDownloader @Inject constructor(
             }
             if (completeOn416) verifyOrFail(book, files) else if (flowFor(book.id).value != DownloadState.Completed) verifyOrFail(book, files)
         } catch (e: CancellationException) {
-            if (paused.contains(book.id)) flowFor(book.id).value = DownloadState.Paused
+            val isPaused = synchronized(jobs) { paused.contains(book.id) }
+            if (isPaused) flowFor(book.id).value = DownloadState.Paused
             else throw e
         } catch (e: DownloadException) {
             flowFor(book.id).value = DownloadState.Failed(e.reason)
