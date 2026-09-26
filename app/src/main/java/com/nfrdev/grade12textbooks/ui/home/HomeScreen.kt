@@ -2,10 +2,18 @@ package com.nfrdev.grade12textbooks.ui.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
@@ -24,14 +32,61 @@ import kotlinx.coroutines.launch
 @Composable
 fun HomeScreen(onStreamSelected: (String) -> Unit = {}) {
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
     var debugOpen by remember { mutableStateOf(false) }
-    Column(Modifier.fillMaxSize().padding(24.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
-        Text(stringResource(R.string.app_name), style = MaterialTheme.typography.headlineMedium)
-        StreamCard(stringResource(R.string.natural_science)) { onStreamSelected("natural_science") }
-        StreamCard(stringResource(R.string.social_science)) { onStreamSelected("social_science") }
-        if (BuildConfig.DEBUG) Text(stringResource(R.string.debug_menu), Modifier.combinedClickable(onClick = {}, onLongClick = { debugOpen = true }))
+    val streams = listOf(
+        stringResource(R.string.natural_science) to "natural_science",
+        stringResource(R.string.social_science) to "social_science",
+        stringResource(R.string.common_subjects) to "common"
+    )
+
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(minSize = 280.dp),
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(horizontal = 24.dp, vertical = 24.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        item(span = { GridItemSpan(maxLineSpan) }) {
+            Card(
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp, vertical = 28.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    Text(
+                        stringResource(R.string.home_eyebrow),
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                    Text(
+                        stringResource(R.string.home_headline),
+                        style = MaterialTheme.typography.headlineMedium,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                    Text(
+                        stringResource(R.string.home_description),
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                    Text(
+                        stringResource(R.string.home_stream_heading),
+                        style = MaterialTheme.typography.titleMedium,
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+                }
+            }
+        }
+        items(streams, key = { it.second }) { (label, route) ->
+            StreamCard(label = label, onClick = { onStreamSelected(route) })
+        }
     }
+
     if (debugOpen) AlertDialog(onDismissRequest = { debugOpen = false }, title = { Text(stringResource(R.string.debug_menu)) },
-        text = { Column { TextButton(onClick = { kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.IO).launch { AppDatabase.getInstance(context).clearAllTables() }; debugOpen = false }) { Text(stringResource(R.string.reset_catalog_cache)) } } },
+        text = { Column { TextButton(onClick = { scope.launch(kotlinx.coroutines.Dispatchers.IO) { AppDatabase.getInstance(context).clearAllTables() }; debugOpen = false }) { Text(stringResource(R.string.reset_catalog_cache)) } } },
         confirmButton = { TextButton(onClick = { debugOpen = false }) { Text(stringResource(R.string.ok)) } })
 }

@@ -14,7 +14,7 @@ class CatalogParserTest {
     private val logger = object : Logger { override fun d(message: String) = Unit; override fun e(message: String, throwable: Throwable?) = Unit }
     @Before fun setUp() { parser = CatalogParser(Json { ignoreUnknownKeys = false }, logger) }
     private fun raw(schema: Int = 1, books: List<BookDto> = listOf(book())) = Json.encodeToString(CatalogDto(schema, 1, "2026-01-01T00:00:00Z", books))
-    private fun book(id: String = "a", checksum: String = "A".repeat(64)) = BookDto(id, "Book", null, "natural_science", "mathematics", null, null, "https://example.invalid/book.pdf", checksum, 1, "en", null, "2026-01-01T00:00:00Z")
+    private fun book(id: String = "a", checksum: String = "A".repeat(64)) = BookDto(id, "Book", null, "natural_science", "mathematics", null, null, "https://kehulum.com/bfile_asset/books_99/collection/grade-12-mathematics-new-curriculum--student-textbook-kehulumcom17599122086bb1.pdf", checksum, 1, "en", null, "2026-01-01T00:00:00Z")
 
     @Test fun validCatalogAcceptedAndChecksumNormalized() {
         val result = parser.parse(raw()) as CatalogParseResult.Success
@@ -26,5 +26,10 @@ class CatalogParserTest {
     @Test fun duplicateLaterEntrySkipped() {
         val result = parser.parse(raw(books = listOf(book(), book()))) as CatalogParseResult.Success
         assertEquals(1, result.books.size)
+    }
+    @Test fun commonStreamAndRealByteSizeAreAccepted() {
+        val result = parser.parse(raw(books = listOf(book().copy(stream = "common", fileSize = 180_129_045)))) as CatalogParseResult.Success
+        assertEquals("common", result.books.single().stream)
+        assertEquals(180_129_045L, result.books.single().fileSize)
     }
 }

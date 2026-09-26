@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": 1,
-  "generatedAt": "2026-09-26T09:46:00+03:00",
+  "version": 2,
+  "generatedAt": "2026-09-26T11:53:57Z",
   "books": [
     {
       "id": "grade-12-agriculture-new-2016",
@@ -12,8 +12,8 @@
       "description": null,
       "coverUrl": "https://kehulum.com/up_asset/b/325/kehulum17001247543a99d15c8a.png",
       "pdfUrl": "https://kehulum.com/bfile_asset/books_99/collection/grade-12-agriculure-new-curriculum--student-textbook-kehulumcom175991626076c1.pdf",
-      "checksumSha256": null,
-      "fileSize": 40,
+      "checksumSha256": "e7aa7559e824916b9020a6e0da8366a8965748f78a0360cebfb575df48cd0836",
+      "fileSize": 39698049,
       "language": "en",
       "curriculumYear": "2016 E.C.",
       "addedAt": "2026-09-26T09:46:00+03:00"
@@ -27,8 +27,8 @@
       "description": null,
       "coverUrl": "https://kehulum.com/ups_asset/b/417/kehulumcom17343520290b7639f9e9.png",
       "pdfUrl": "https://kehulum.com/bfile_asset/books_99/collection/grade-12-amharic-new-curriculum--student-textbook-kehulumcom1759241489d36c.pdf",
-      "checksumSha256": null,
-      "fileSize": 4.4,
+      "checksumSha256": "7ee81fd07958eaf92030f7fdc33f623c7cec437a3908186349bb1a7a047d8fc6",
+      "fileSize": 4679477,
       "language": "am",
       "curriculumYear": "2016 E.C.",
       "addedAt": "2026-09-26T09:46:00+03:00"
@@ -42,8 +42,8 @@
       "description": null,
       "coverUrl": "https://kehulum.com/up_asset/b/326/kehulum17001262831195680dae.png",
       "pdfUrl": "https://kehulum.com/bfile_asset/books_99/collection/grade-12-biology-new-curriculum--student-textbook-kehulumcom17599148324a02.pdf",
-      "checksumSha256": null,
-      "fileSize": 172,
+      "checksumSha256": "377526a1cf9414706ca21fba92efc6f788eb8e1efc1ae6ce5954bae360e42146",
+      "fileSize": 180129045,
       "language": "en",
       "curriculumYear": "2016 E.C.",
       "addedAt": "2026-09-26T09:46:00+03:00"
@@ -57,8 +57,8 @@
       "description": null,
       "coverUrl": "https://kehulum.com/up_asset/b/327/kehulum1700126634649d0581b2.png",
       "pdfUrl": "https://kehulum.com/bfile_asset/books_99/collection/grade-12-chemistry-new-curriculum--student-textbook-kehulumcom1759915918b6bd.pdf",
-      "checksumSha256": null,
-      "fileSize": 8.8,
+      "checksumSha256": "ecc684a8a7f379db38cbbb681480cad23d5900af48a72e7cacab7b9ac9827260",
+      "fileSize": 6782150,
       "language": "en",
       "curriculumYear": "2016 E.C.",
       "addedAt": "2026-09-26T09:46:00+03:00"
@@ -72,8 +72,8 @@
       "description": null,
       "coverUrl": "https://kehulum.com/ups_asset/b/328/kehulumcom-1759915781ae11310b01.png",
       "pdfUrl": "https://kehulum.com/bfile_asset/books_99/collection/grade-12-economics-new-curriculum--student-textbook-kehulumcom1759915712056d.pdf",
-      "checksumSha256": null,
-      "fileSize": 5,
+      "checksumSha256": "8bada6f738c26de311ee212e42895e7c58c645466b0ea078ad9b83d64c7238dd",
+      "fileSize": 3936150,
       "language": "en",
       "curriculumYear": "2016 E.C.",
       "addedAt": "2026-09-26T09:46:00+03:00"
@@ -87,8 +87,8 @@
       "description": null,
       "coverUrl": "https://kehulum.com/up_asset/b/329/kehulum1700127636c5abe1edc0.png",
       "pdfUrl": "https://kehulum.com/bfile_asset/books_99/collection/grade-12-english-for-ethiopia-new-curriculum--student-textbook-kehulumcom1759915593b3b5.pdf",
-      "checksumSha256": null,
-      "fileSize": 15,
+      "checksumSha256": "256d3886d1df612ff159b2d16086b48f150216b0072e7ce09db55c66c7cf06ff",
+      "fileSize": 14466788,
       "language": "en",
       "curriculumYear": "2016 E.C.",
       "addedAt": "2026-09-26T09:46:00+03:00"
@@ -102,8 +102,8 @@
       "description": null,
       "coverUrl": "https://kehulum.com/up_asset/b/330/kehulum1700128037682eaa7690.png",
       "pdfUrl": "https://kehulum.com/bfile_asset/books_99/collection/grade-12-geography-new-curriculum--student-textbook-kehulumcom17599134797b34.pdf",
-      "checksumSha256": null,
-      "fileSize": 10,
+      "checksumSha256": "4b364393f557c4fb3fa1d322488164e94c3fb7132ea396ceee8c4c7498ecff6a",
+      "fileSize": 11261461,
       "language": "en",
       "curriculumYear": "2016 E.C.",
       "addedAt": "2026-09-26T09:46:00+03:00"
@@ -117,8 +117,8 @@
       "description": null,
       "coverUrl": "https://kehulum.com/up_asset/b/331/kehulum17001284034f1ca578a8.png",
       "pdfUrl": "https://kehulum.com/bfile_asset/books_99/collection/grade-12-history-new-curriculum--student-textbook-kehulumcom17599097897dd4.pdf",
-      "checksumSha256": null,
-      "fileSize": 8,
+      "checksumSha256": "b2c830f6a8dc4d123c1eb9d2c812ecd1f4f061059244abf49e7a17374e343818",
+      "fileSize": 7530849,
       "language": "en",
       "curriculumYear": "2016 E.C.",
       "addedAt": "2026-09-26T09:46:00+03:00"
@@ -132,8 +132,8 @@
       "description": null,
       "coverUrl": "https://kehulum.com/up_asset/b/332/kehulum1700128700850d110616.png",
       "pdfUrl": "https://kehulum.com/bfile_asset/books_99/collection/grade-12-information-technology-new-curriculum--student-textbook-kehulumcom1759915352faae.pdf",
-      "checksumSha256": null,
-      "fileSize": 10,
+      "checksumSha256": "901faed9665f968dd5520508de2d9e0ae134a33a31beb7b6bbfc4d7e8168dfb4",
+      "fileSize": 8985877,
       "language": "en",
       "curriculumYear": "2016 E.C.",
       "addedAt": "2026-09-26T09:46:00+03:00"
@@ -147,8 +147,8 @@
       "description": null,
       "coverUrl": "https://kehulum.com/ups_asset/b/333/kehulumcom-17599113664d8d5a380a.png",
       "pdfUrl": "https://kehulum.com/bfile_asset/books_99/collection/grade-12-mathematics-new-curriculum--student-textbook-kehulumcom17599122086bb1.pdf",
-      "checksumSha256": null,
-      "fileSize": 117,
+      "checksumSha256": "4005766964372c713010df8851048bcef26c99933d645ebc1ff5e56a6d9ce318",
+      "fileSize": 122690877,
       "language": "en",
       "curriculumYear": "2016 E.C.",
       "addedAt": "2026-09-26T09:46:00+03:00"
@@ -162,8 +162,8 @@
       "description": null,
       "coverUrl": "https://kehulum.com/ups_asset/b/334/kehulumcom-1759910067c49ce4fbf8.png",
       "pdfUrl": "https://kehulum.com/bfile_asset/books_99/collection/grade-12-physics-new-curriculum--student-textbook-kehulumcom1759910068aff6.pdf",
-      "checksumSha256": null,
-      "fileSize": 11,
+      "checksumSha256": "cbee11bc010043db85d1517762133dbc41e50e8ae1e2728ffbfd308942318cca",
+      "fileSize": 11124329,
       "language": "en",
       "curriculumYear": "2016 E.C.",
       "addedAt": "2026-09-26T09:46:00+03:00"

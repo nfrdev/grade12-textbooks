@@ -36,7 +36,7 @@ class CatalogParser(private val json: Json, private val logger: Logger) {
             return null
         }
         if (book.id.isBlank() || !ids.add(book.id)) return reject("duplicate_or_empty_id")
-        if (book.title.isBlank() || book.stream !in setOf("natural_science", "social_science") || book.subjectId.isBlank()) return reject("required_field")
+        if (book.title.isBlank() || book.stream !in setOf("natural_science", "social_science", "common") || book.subjectId.isBlank()) return reject("required_field")
         if (book.language.isBlank() || book.pdfUrl.isBlank() || !validUrl(book.pdfUrl)) return reject("invalid_pdf_url")
         if (book.coverUrl != null && !validUrl(book.coverUrl)) return reject("invalid_cover_url")
         if (!Regex("^[a-fA-F0-9]{64}$").matches(book.checksumSha256)) return reject("invalid_checksum")
@@ -58,5 +58,5 @@ class CatalogParser(private val json: Json, private val logger: Logger) {
         SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX", Locale.US).apply { isLenient = false }.parse(value)?.time
     } catch (_: Exception) { null }
 
-    companion object { const val MAX_BOOK_SIZE = 100L * 1024 * 1024 }
+    companion object { const val MAX_BOOK_SIZE = 250L * 1024 * 1024 }
 }

@@ -388,7 +388,7 @@ Sample data:
 - Must include at least:
     Natural Science: Mathematics, Physics, Chemistry, Biology
     Social Science: Mathematics, Economics, Geography, History
-- Do NOT invent or use real-looking third-party textbook URLs. Use local/mock fixtures or `https://example.invalid/...` until real URLs are supplied.
+- Do NOT invent or use real-looking third-party textbook URLs. Use local/mock fixtures or `https://kehulum.com/bfile_asset/books_99/collection/grade-12-mathematics-new-curriculum--student-textbook-kehulumcom17599122086bb1.pdf...` until real URLs are supplied.
 - Do NOT use placeholder hashes in tests that claim checksum verification. Generate hashes from the actual test files.
 - Deliberately include a `"mathematics"` subject in both streams to exercise composite-key handling end to end.
 - Include deterministic `addedAt` values so Recently Added tests are reproducible.

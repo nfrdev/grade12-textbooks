@@ -1,6 +1,6 @@
 package com.nfrdev.grade12textbooks.domain.model
 
-enum class Stream { NATURAL_SCIENCE, SOCIAL_SCIENCE }
+enum class Stream { NATURAL_SCIENCE, SOCIAL_SCIENCE, COMMON }
 
 data class Subject(val id: String, val name: String, val stream: Stream, val iconRes: Int? = null, val bookCount: Int)
 

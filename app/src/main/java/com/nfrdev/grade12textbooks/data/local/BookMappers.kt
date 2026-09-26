@@ -8,6 +8,7 @@ import com.nfrdev.grade12textbooks.domain.model.Stream
 private fun String.toDomainStream(): Stream = when (this) {
     "natural_science" -> Stream.NATURAL_SCIENCE
     "social_science" -> Stream.SOCIAL_SCIENCE
+    "common" -> Stream.COMMON
     else -> error("Unknown stream")
 }
 

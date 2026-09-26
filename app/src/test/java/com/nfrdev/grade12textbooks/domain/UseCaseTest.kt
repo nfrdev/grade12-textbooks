@@ -10,11 +10,11 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class UseCaseTest {
-    @Test fun streamsAreFixed() { assertEquals(2, GetStreamsUseCase()().size) }
+    @Test fun streamsIncludeCommonSubjects() { assertEquals(3, GetStreamsUseCase()().size) }
     @Test fun booksUseCompositeSubjectKey() = runTest {
         val repo = FakeCatalogRepository().apply {
-            books += Book("ns", "NS Math", null, Stream.NATURAL_SCIENCE, "mathematics", null, null, "https://example.invalid/ns", "a".repeat(64), null, "en", null, 1)
-            books += Book("ss", "SS Math", null, Stream.SOCIAL_SCIENCE, "mathematics", null, null, "https://example.invalid/ss", "b".repeat(64), null, "en", null, 1)
+            books += Book("ns", "NS Math", null, Stream.NATURAL_SCIENCE, "mathematics", null, null, "https://kehulum.com/bfile_asset/books_99/collection/grade-12-mathematics-new-curriculum--student-textbook-kehulumcom17599122086bb1.pdf", "a".repeat(64), null, "en", null, 1)
+            books += Book("ss", "SS Math", null, Stream.SOCIAL_SCIENCE, "mathematics", null, null, "https://kehulum.com/bfile_asset/books_99/collection/grade-12-mathematics-new-curriculum--student-textbook-kehulumcom17599122086bb1.pdf", "b".repeat(64), null, "en", null, 1)
         }
         val result = GetBooksUseCase(repo)(Stream.NATURAL_SCIENCE, "mathematics") as CatalogResult.Success
         assertEquals(listOf("ns"), result.value.map { it.id })

@@ -33,6 +33,7 @@ class DownloadScheduler @Inject constructor(
             .setConstraints(constraints)
             .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, 30, TimeUnit.SECONDS)
             .addTag(TAG)
+            .addTag(bookTag(book.id))
             .build()
         WorkManager.getInstance(context).enqueueUniqueWork(workName(book.id), ExistingWorkPolicy.KEEP, request)
     }
@@ -54,6 +55,7 @@ class DownloadScheduler @Inject constructor(
 
     companion object {
         const val TAG = "book-download"
+        fun bookTag(bookId: String) = "book-download:$bookId"
         fun workName(bookId: String) = "download:$bookId"
     }
 }

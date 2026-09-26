@@ -7,7 +7,7 @@ import com.nfrdev.grade12textbooks.domain.repository.CatalogRepository
 import com.nfrdev.grade12textbooks.domain.repository.CatalogResult
 import javax.inject.Inject
 
-class GetStreamsUseCase @Inject constructor() { operator fun invoke(): List<Stream> = listOf(Stream.NATURAL_SCIENCE, Stream.SOCIAL_SCIENCE) }
+class GetStreamsUseCase @Inject constructor() { operator fun invoke(): List<Stream> = Stream.entries }
 class GetSubjectsUseCase @Inject constructor(private val repository: CatalogRepository) {
     suspend operator fun invoke(stream: Stream): CatalogResult<List<Subject>> = try { CatalogResult.Success(repository.getSubjects(stream)) } catch (_: Exception) { CatalogResult.Failure("catalog_read_failed") }
 }

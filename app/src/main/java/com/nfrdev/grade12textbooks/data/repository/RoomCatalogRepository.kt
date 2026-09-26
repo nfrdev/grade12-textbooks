@@ -71,7 +71,11 @@ class RoomCatalogRepository @Inject constructor(
     }
 
     override suspend fun getBooks(stream: Stream, subjectId: String): List<Book> = withContext(Dispatchers.IO) {
-        val key = if (stream == Stream.NATURAL_SCIENCE) "natural_science" else "social_science"
+        val key = when (stream) {
+            Stream.NATURAL_SCIENCE -> "natural_science"
+            Stream.SOCIAL_SCIENCE -> "social_science"
+            Stream.COMMON -> "common"
+        }
         val local = states.getAll().associateBy { it.bookId }
         books.getBySubject(key, subjectId).map { it.toDomain(local[it.id]) }
     }

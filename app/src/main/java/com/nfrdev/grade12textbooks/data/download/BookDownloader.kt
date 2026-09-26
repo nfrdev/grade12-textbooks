@@ -66,8 +66,8 @@ class BookDownloader @Inject constructor(
         val files = filesFor(book.id)
         try {
             if (!validUrl(book.pdfUrl)) throw DownloadException("unsupported_url")
+            if (!files.dir.exists() && !files.dir.mkdirs()) throw DownloadException("storage_unavailable")
             if (!hasStorage(book)) throw DownloadException("insufficient_storage")
-            files.dir.mkdirs()
             if (files.final.exists() && verify(files.final, book.checksumSha256)) {
                 persistCompleted(book, files.final)
                 flowFor(book.id).value = DownloadState.Completed
@@ -171,11 +171,11 @@ class BookDownloader @Inject constructor(
     private fun flowFor(id: String) = synchronized(stateMap) { stateMap.getOrPut(id) { MutableStateFlow(DownloadState.Idle) } }
     private fun filesFor(id: String): DownloadFiles {
         require(id.matches(Regex("[A-Za-z0-9._-]+"))) { "invalid_book_id" }
-        val dir = File(context.getExternalFilesDir(null), "books")
+        val dir = File(context.getExternalFilesDir(null) ?: context.filesDir, "books")
         return DownloadFiles(dir, File(dir, "$id.pdf.part"), File(dir, "$id.pdf"))
     }
 
     private data class DownloadFiles(val dir: File, val part: File, val final: File)
     private class DownloadException(val reason: String) : Exception(reason)
-    companion object { const val MAX_ACCEPTED_BYTES = 100L * 1024 * 1024; const val SAFETY_MARGIN = 50L * 1024 * 1024; const val UNKNOWN_SIZE = 50L * 1024 * 1024 }
+    companion object { const val MAX_ACCEPTED_BYTES = 250L * 1024 * 1024; const val SAFETY_MARGIN = 50L * 1024 * 1024; const val UNKNOWN_SIZE = MAX_ACCEPTED_BYTES }
 }

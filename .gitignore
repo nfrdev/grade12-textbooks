@@ -3,5 +3,7 @@ local.properties
 build/
 */build/
 captures/
+emulator-*.png
+screen-*.png
 .idea/
 *.iml

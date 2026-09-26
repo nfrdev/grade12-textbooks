@@ -38,6 +38,7 @@ class ReaderViewModel @Inject constructor(
     private val userPreferences: UserPreferencesRepository
 ) : ViewModel() {
     private val bookId = savedStateHandle.get<String>("bookId").orEmpty()
+    private val requestedPage = savedStateHandle.get<Int>("page")
     private val _state = MutableStateFlow<ReaderState>(ReaderState.Loading)
     val state: StateFlow<ReaderState> = _state
 
@@ -66,7 +67,10 @@ class ReaderViewModel @Inject constructor(
             descriptor = ParcelFileDescriptor.open(File(path), ParcelFileDescriptor.MODE_READ_ONLY)
             renderer = PdfRenderer(descriptor!!)
             totalPages = renderer!!.pageCount
-            currentPage = progressDao.get(bookId)?.currentPage?.coerceIn(0, totalPages - 1) ?: 0
+            val pageToOpen = requestedPage?.takeIf { it >= 0 }
+            currentPage = pageToOpen?.coerceIn(0, totalPages - 1)
+                ?: progressDao.get(bookId)?.currentPage?.coerceIn(0, totalPages - 1)
+                ?: 0
             renderCurrentPage()
         } catch (_: Exception) {
             _state.value = ReaderState.Error
